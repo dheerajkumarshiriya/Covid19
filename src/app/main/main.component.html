@@ -1,0 +1,36 @@
+<main class="app__main-inner">
+  <div class="app__row app__row--left">
+    <app-list-cases
+      class="app__list--confirmed"
+      #confirmedList
+      type="Confirmed"
+      [totalCases]="totalConfirmed"
+      [masterArray]="countries"
+    ></app-list-cases>
+    <section class="app__col app__col--map">
+      <!-- <h2 class="app__mobile-header">Coronavirus <strong>COVID-19</strong> Global Cases</h2> -->
+
+      <app-map-cases></app-map-cases>
+    </section>
+  </div>
+
+  <div class="app__col app__col--stats">
+    <div class="app__row app__list-stack">
+      <app-list-cases
+        class="app__list--deaths"
+        #deathsList
+        type="Deaths"
+        [totalCases]="totalDeaths"
+        [masterArray]="countries"
+      ></app-list-cases>
+      <app-list-cases
+        class="app__list--recovered"
+        #recoveredList
+        type="Recovered"
+        [totalCases]="totalRecovered"
+        [masterArray]="countries"
+      ></app-list-cases>
+    </div>
+    <app-timeline-chart class="app-timeline-chart" #charts></app-timeline-chart>
+  </div>
+</main>

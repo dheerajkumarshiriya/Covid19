@@ -1,0 +1,30 @@
+<div class="card" style="width: 18rem;">
+  <h5 class="card-title" style="padding:15px">Total {{ type }}</h5>
+  <h6 class="card-subtitle mb-2 text-muted" style="padding-left:15px">{{ totalCases }}</h6>
+  <hr />
+  <div
+    class="card-body"
+    [ngClass]="{
+      scrollable: type === 'Recovered' || type === 'Deaths',
+      'full-scrollable': type === 'Confirmed'
+    }"
+  >
+    <p class="card-text" *ngFor="let country of masterArray; let i = index">
+      <a *ngIf="type === 'Confirmed'">
+        {{ country.name }} ({{ country.countryWiseTotalConfirmed }})
+      </a>
+      <a *ngIf="type === 'Deaths'"> {{ country.name }} ({{ country.countryWiseTotalDeaths }}) </a>
+      <a *ngIf="type === 'Recovered'">
+        {{ country.name }} ({{ country.countryWiseTotalRecovered }})
+      </a>
+    </p>
+    <!-- <p class="card-text scrollable" *ngFor="let country of masterArray; let i = index">
+      {{ country.name }} ({{ country.countryWiseTotalDeaths }})
+    </p>
+    <p class="card-text scrollable" *ngFor="let country of masterArray; let i = index">
+      {{ country.name }} ({{ country.countryWiseTotalRecovered }})
+    </p> -->
+    <!-- <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a> -->
+  </div>
+</div>
