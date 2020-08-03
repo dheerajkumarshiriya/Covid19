@@ -4,6 +4,7 @@
       class="app__list--confirmed"
       #confirmedList
       type="Confirmed"
+      (onEmitName)="doSomething($event)"
       [totalCases]="totalConfirmed"
       [masterArray]="countries"
     ></app-list-cases>
@@ -11,6 +12,21 @@
       <!-- <h2 class="app__mobile-header">Coronavirus <strong>COVID-19</strong> Global Cases</h2> -->
 
       <app-map-cases></app-map-cases>
+      <div>
+        <div>
+          <div style="display: block">
+            <canvas
+              baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+            >
+            </canvas>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 

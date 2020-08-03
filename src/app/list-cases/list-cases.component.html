@@ -1,6 +1,23 @@
 <div class="card" style="width: 18rem;">
-  <h5 class="card-title" style="padding:15px">Total {{ type }}</h5>
-  <h6 class="card-subtitle mb-2 text-muted" style="padding-left:15px">{{ totalCases }}</h6>
+  <h5
+    class="card-title"
+    style="padding:15px"
+    [ngStyle]="{
+      'background-color':
+        type === 'Confirmed' ? '#fbbbce' : type === 'Deaths' ? '#e7e9ed' : '#ffe8b7'
+    }"
+  >
+    Total {{ type }}
+  </h5>
+  <h6
+    class="card-subtitle mb-2 "
+    style="padding-left:15px"
+    [ngStyle]="{
+      color: type === 'Confirmed' ? '#f96183' : type === 'Deaths' ? '#cbcfd8' : '#ffce56'
+    }"
+  >
+    {{ totalCases }}
+  </h6>
   <hr />
   <div
     class="card-body"
@@ -10,7 +27,12 @@
     }"
   >
     <p class="card-text" *ngFor="let country of masterArray; let i = index">
-      <a *ngIf="type === 'Confirmed'">
+      <a
+        *ngIf="type === 'Confirmed'"
+        class="dropdown-item"
+        style="cursor: pointer"
+        (click)="onDropDownListClick(i, country.name, country.slug)"
+      >
         {{ country.name }} ({{ country.countryWiseTotalConfirmed }})
       </a>
       <a *ngIf="type === 'Deaths'"> {{ country.name }} ({{ country.countryWiseTotalDeaths }}) </a>
@@ -28,3 +50,18 @@
     <a href="#" class="card-link">Another link</a> -->
   </div>
 </div>
+<!-- <div>
+  <div>
+    <div style="display: block" *ngIf="type === 'Confirmed'">
+      <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+</div> -->
